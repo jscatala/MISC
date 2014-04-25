@@ -1,6 +1,17 @@
 #!/bin/bash
 #set -x
-# ./stop_services [all]
+# 
+#edit: (lines 13-14)
+#   pids = pids' name
+#   services= lists of services related to pids
+#
+#run:
+#   ./stop_services [all]
+
+
+#Edit lists
+pids=( "sshd" "cupsd" "mpd" "smbd" "nmbd" "avahi-daemon" )
+services=( "ssh" "cups" "mpd" "smbd" "nmbd" "avahi-daemon" )
 
 
 function check_pid {
@@ -23,10 +34,6 @@ function stop_ss {
         echo "Problems trying to stop $1..."
     fi
 }
-
-#set the lists
-pids=( "sshd" "cupsd" "mpd" "smbd" "nmbd" "avahi-daemon" )
-services=( "ssh" "cups" "mpd" "smbd" "nmbd" "avahi-daemon" )
 
 echo "Stopping services..."
 if [ $UID -ne 0 ]; then
